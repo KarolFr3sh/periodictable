@@ -440,6 +440,294 @@
       color: var(--glow);
     }
 
+    /* ─── ANÁLISIS: SECCIÓN ─── */
+    #analisis {
+      position: relative;
+      z-index: 10;
+      max-width: 1300px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .analisis-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .analisis-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--glow);
+      text-transform: uppercase;
+    }
+
+    .analisis-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .tab-btn {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 8px 18px 10px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover { color: var(--text); }
+
+    .tab-btn.active {
+      color: var(--glow);
+      border-bottom-color: var(--glow);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Panel: Elemento individual */
+    .panel-elem {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) { .panel-elem { grid-template-columns: 1fr; } }
+
+    .analisis-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .analisis-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--glow), var(--glow2));
+    }
+
+    .card-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    /* Selector de elemento */
+    .elem-selector-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .elem-select {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(0,20,40,0.8);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      padding: 8px 12px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .elem-select:focus { border-color: var(--glow); }
+
+    .btn-analizar {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,255,136,0.1));
+      border: 1px solid var(--glow);
+      border-radius: 6px;
+      color: var(--glow);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .btn-analizar:hover {
+      background: linear-gradient(135deg, rgba(0,212,255,0.3), rgba(0,255,136,0.2));
+      box-shadow: 0 0 16px rgba(0,212,255,0.3);
+    }
+
+    /* Tabla de datos */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 7px 10px;
+      color: var(--glow);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+    }
+
+    .data-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0,212,255,0.06);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table .formula-col {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    .data-table .val-col {
+      color: var(--glow2);
+      font-weight: bold;
+      font-size: 0.95rem;
+      text-align: right;
+    }
+
+    .elem-hero {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .elem-hero-sym {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--glow);
+      text-shadow: 0 0 24px rgba(0,212,255,0.6);
+      line-height: 1;
+    }
+
+    .elem-hero-info .name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .elem-hero-info .z {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Chart containers */
+    .chart-wrap {
+      position: relative;
+      height: 280px;
+    }
+
+    /* Panel: comparación todos */
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .range-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .range-input {
+      width: 64px;
+      background: rgba(0,20,40,0.8);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      padding: 5px 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .range-input:focus { border-color: var(--glow); }
+
+    .placeholder-msg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 220px;
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      gap: 10px;
+    }
+
+    .placeholder-msg .icon { font-size: 2rem; opacity: 0.4; }
+
+    .api-note {
+      margin-top: 16px;
+      padding: 10px 14px;
+      background: rgba(255,180,0,0.06);
+      border: 1px solid rgba(255,180,0,0.2);
+      border-radius: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: rgba(255,200,80,0.8);
+      letter-spacing: 0.07em;
+      line-height: 1.6;
+    }
+
+    /* Highlight element on click from periodic table */
+    .element.pulse-select {
+      animation: pulseSelect 0.6s ease;
+    }
+
+    @keyframes pulseSelect {
+      0%   { box-shadow: 0 0 0 0 rgba(0,212,255,0.8); }
+      100% { box-shadow: 0 0 0 20px transparent; }
+    }
+
     /* ─── FOOTER ─── */
     footer {
       position: relative;
@@ -1000,9 +1288,411 @@
   </div>
 </div>
 
+<!-- ─── SECCIÓN DE ANÁLISIS ─── -->
+<section id="analisis">
+  <div class="analisis-header">
+    <div class="analisis-title">⬡ Análisis de Elementos</div>
+    <div class="analisis-divider"></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="individual">Elemento Individual</button>
+    <button class="tab-btn" data-tab="comparacion">Comparación General</button>
+  </div>
+
+  <!-- ── TAB: Individual ── -->
+  <div class="tab-panel active" id="tab-individual">
+    <div class="elem-selector-row">
+      <select class="elem-select" id="elemSelect">
+        <option value="">— Selecciona un elemento —</option>
+      </select>
+      <button class="btn-analizar" id="btnAnalizar">▶ Analizar</button>
+    </div>
+
+    <div id="individual-content">
+      <div class="placeholder-msg">
+        <div class="icon">⚛</div>
+        <span>Selecciona un elemento para ver su tabla y gráfica</span>
+        <span style="opacity:0.5">También puedes hacer clic en cualquier elemento de la tabla periódica</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: Comparación ── -->
+  <div class="tab-panel" id="tab-comparacion">
+    <div class="range-row">
+      <span class="range-label">Rango Z:</span>
+      <input class="range-input" type="number" id="rangeDesde" value="1" min="1" max="112">
+      <span class="range-label">—</span>
+      <input class="range-input" type="number" id="rangeHasta" value="36" min="1" max="112">
+      <button class="btn-analizar" id="btnComparar">▶ Graficar</button>
+    </div>
+    <div class="analisis-card">
+      <div class="card-title">// Protones · Electrones · Neutrones · # Másico  vs  Z</div>
+      <div class="chart-wrap">
+        <canvas id="chartComparacion"></canvas>
+      </div>
+      <div class="api-note" id="apiNote">
+        ⚠ Para datos en tiempo real desde Python, ejecuta: <strong>python3 server.py</strong><br>
+        Los datos actuales son locales (integrados en la página).
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>// TABLA PERIÓDICA &nbsp;·&nbsp; KAROL RINCÓN &nbsp;·&nbsp; 2024</footer>
 
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
 <script>
+  // ─── DATOS LOCALES EMBEBIDOS (espejo del server.py) ───────────────────────
+  const ELEMENTS_DATA = [
+    {sim:"H",nom:"Hidrógeno",Z:1,N:0,masa:1.008},{sim:"He",nom:"Helio",Z:2,N:2,masa:4.003},
+    {sim:"Li",nom:"Litio",Z:3,N:4,masa:6.94},{sim:"Be",nom:"Berilio",Z:4,N:5,masa:9.012},
+    {sim:"B",nom:"Boro",Z:5,N:6,masa:10.81},{sim:"C",nom:"Carbono",Z:6,N:6,masa:12.011},
+    {sim:"N",nom:"Nitrógeno",Z:7,N:7,masa:14.007},{sim:"O",nom:"Oxígeno",Z:8,N:8,masa:15.999},
+    {sim:"F",nom:"Flúor",Z:9,N:10,masa:18.998},{sim:"Ne",nom:"Neón",Z:10,N:10,masa:20.18},
+    {sim:"Na",nom:"Sodio",Z:11,N:12,masa:22.99},{sim:"Mg",nom:"Magnesio",Z:12,N:12,masa:24.305},
+    {sim:"Al",nom:"Aluminio",Z:13,N:14,masa:26.982},{sim:"Si",nom:"Silicio",Z:14,N:14,masa:28.085},
+    {sim:"P",nom:"Fósforo",Z:15,N:16,masa:30.974},{sim:"S",nom:"Azufre",Z:16,N:16,masa:32.06},
+    {sim:"Cl",nom:"Cloro",Z:17,N:18,masa:35.45},{sim:"Ar",nom:"Argón",Z:18,N:22,masa:39.948},
+    {sim:"K",nom:"Potasio",Z:19,N:20,masa:39.098},{sim:"Ca",nom:"Calcio",Z:20,N:20,masa:40.078},
+    {sim:"Sc",nom:"Escandio",Z:21,N:24,masa:44.956},{sim:"Ti",nom:"Titanio",Z:22,N:26,masa:47.867},
+    {sim:"V",nom:"Vanadio",Z:23,N:28,masa:50.942},{sim:"Cr",nom:"Cromo",Z:24,N:28,masa:51.996},
+    {sim:"Mn",nom:"Manganeso",Z:25,N:30,masa:54.938},{sim:"Fe",nom:"Hierro",Z:26,N:30,masa:55.845},
+    {sim:"Co",nom:"Cobalto",Z:27,N:32,masa:58.933},{sim:"Ni",nom:"Níquel",Z:28,N:30,masa:58.693},
+    {sim:"Cu",nom:"Cobre",Z:29,N:34,masa:63.546},{sim:"Zn",nom:"Zinc",Z:30,N:35,masa:65.38},
+    {sim:"Ga",nom:"Galio",Z:31,N:39,masa:69.723},{sim:"Ge",nom:"Germanio",Z:32,N:41,masa:72.63},
+    {sim:"As",nom:"Arsénico",Z:33,N:42,masa:74.922},{sim:"Se",nom:"Selenio",Z:34,N:45,masa:78.971},
+    {sim:"Br",nom:"Bromo",Z:35,N:45,masa:79.904},{sim:"Kr",nom:"Kriptón",Z:36,N:48,masa:83.798},
+    {sim:"Rb",nom:"Rubidio",Z:37,N:48,masa:85.468},{sim:"Sr",nom:"Estroncio",Z:38,N:50,masa:87.62},
+    {sim:"Y",nom:"Itrio",Z:39,N:50,masa:88.906},{sim:"Zr",nom:"Circonio",Z:40,N:51,masa:91.224},
+    {sim:"Nb",nom:"Niobio",Z:41,N:52,masa:92.906},{sim:"Mo",nom:"Molibdeno",Z:42,N:54,masa:95.95},
+    {sim:"Tc",nom:"Tecnecio",Z:43,N:55,masa:98.0},{sim:"Ru",nom:"Rutenio",Z:44,N:57,masa:101.07},
+    {sim:"Rh",nom:"Rodio",Z:45,N:58,masa:102.91},{sim:"Pd",nom:"Paladio",Z:46,N:60,masa:106.42},
+    {sim:"Ag",nom:"Plata",Z:47,N:61,masa:107.87},{sim:"Cd",nom:"Cadmio",Z:48,N:64,masa:112.41},
+    {sim:"In",nom:"Indio",Z:49,N:66,masa:114.82},{sim:"Sn",nom:"Estaño",Z:50,N:69,masa:118.71},
+    {sim:"Sb",nom:"Antimonio",Z:51,N:71,masa:121.76},{sim:"Te",nom:"Telurio",Z:52,N:76,masa:127.6},
+    {sim:"I",nom:"Yodo",Z:53,N:74,masa:126.9},{sim:"Xe",nom:"Xenón",Z:54,N:77,masa:131.29},
+    {sim:"Cs",nom:"Cesio",Z:55,N:78,masa:132.91},{sim:"Ba",nom:"Bario",Z:56,N:81,masa:137.33},
+    {sim:"La",nom:"Lantano",Z:57,N:82,masa:138.91},{sim:"Ce",nom:"Cerio",Z:58,N:82,masa:140.12},
+    {sim:"Pr",nom:"Praseodimio",Z:59,N:82,masa:140.91},{sim:"Nd",nom:"Neodimio",Z:60,N:84,masa:144.24},
+    {sim:"Pm",nom:"Prometio",Z:61,N:84,masa:145.0},{sim:"Sm",nom:"Samario",Z:62,N:88,masa:150.36},
+    {sim:"Eu",nom:"Europio",Z:63,N:89,masa:151.96},{sim:"Gd",nom:"Gadolinio",Z:64,N:93,masa:157.25},
+    {sim:"Tb",nom:"Terbio",Z:65,N:94,masa:158.93},{sim:"Dy",nom:"Disprosio",Z:66,N:97,masa:162.5},
+    {sim:"Ho",nom:"Holmio",Z:67,N:98,masa:164.93},{sim:"Er",nom:"Erbio",Z:68,N:100,masa:167.26},
+    {sim:"Tm",nom:"Tulio",Z:69,N:99,masa:168.93},{sim:"Yb",nom:"Iterbio",Z:70,N:103,masa:173.05},
+    {sim:"Lu",nom:"Lutecio",Z:71,N:104,masa:174.97},{sim:"Hf",nom:"Hafnio",Z:72,N:106,masa:178.49},
+    {sim:"Ta",nom:"Tántalo",Z:73,N:108,masa:180.95},{sim:"W",nom:"Wolframio",Z:74,N:110,masa:183.84},
+    {sim:"Re",nom:"Renio",Z:75,N:111,masa:186.21},{sim:"Os",nom:"Osmio",Z:76,N:114,masa:190.23},
+    {sim:"Ir",nom:"Iridio",Z:77,N:115,masa:192.22},{sim:"Pt",nom:"Platino",Z:78,N:117,masa:195.08},
+    {sim:"Au",nom:"Oro",Z:79,N:118,masa:196.97},{sim:"Hg",nom:"Mercurio",Z:80,N:121,masa:200.59},
+    {sim:"Tl",nom:"Talio",Z:81,N:123,masa:204.38},{sim:"Pb",nom:"Plomo",Z:82,N:125,masa:207.2},
+    {sim:"Bi",nom:"Bismuto",Z:83,N:126,masa:208.98},{sim:"Po",nom:"Polonio",Z:84,N:125,masa:209.0},
+    {sim:"At",nom:"Astato",Z:85,N:125,masa:210.0},{sim:"Rn",nom:"Radón",Z:86,N:136,masa:222.0},
+    {sim:"Fr",nom:"Francio",Z:87,N:136,masa:223.0},{sim:"Ra",nom:"Radio",Z:88,N:138,masa:226.0},
+    {sim:"Ac",nom:"Actinio",Z:89,N:138,masa:227.0},{sim:"Th",nom:"Torio",Z:90,N:142,masa:232.04},
+    {sim:"Pa",nom:"Protactinio",Z:91,N:140,masa:231.04},{sim:"U",nom:"Uranio",Z:92,N:146,masa:238.03},
+    {sim:"Np",nom:"Neptunio",Z:93,N:144,masa:237.0},{sim:"Pu",nom:"Plutonio",Z:94,N:150,masa:244.0},
+    {sim:"Am",nom:"Americio",Z:95,N:148,masa:243.0},{sim:"Cm",nom:"Curio",Z:96,N:151,masa:247.0},
+    {sim:"Bk",nom:"Berkelio",Z:97,N:150,masa:247.0},{sim:"Cf",nom:"Californio",Z:98,N:153,masa:251.0},
+    {sim:"Es",nom:"Einstenio",Z:99,N:153,masa:252.0},{sim:"Fm",nom:"Fermio",Z:100,N:157,masa:257.0},
+    {sim:"Md",nom:"Mendelevio",Z:101,N:157,masa:258.0},{sim:"No",nom:"Nobelio",Z:102,N:157,masa:259.0},
+    {sim:"Lr",nom:"Lawrencio",Z:103,N:163,masa:266.0},{sim:"Rf",nom:"Rutherfordio",Z:104,N:163,masa:267.0},
+    {sim:"Db",nom:"Dubnio",Z:105,N:163,masa:268.0},{sim:"Sg",nom:"Seaborgio",Z:106,N:163,masa:269.0},
+    {sim:"Bh",nom:"Bohrio",Z:107,N:163,masa:270.0},{sim:"Hs",nom:"Hasio",Z:108,N:169,masa:277.0},
+    {sim:"Mt",nom:"Meitnerio",Z:109,N:169,masa:278.0},{sim:"Ds",nom:"Darmstatio",Z:110,N:171,masa:281.0},
+    {sim:"Rg",nom:"Roentgenio",Z:111,N:171,masa:282.0},{sim:"Cn",nom:"Copernicio",Z:112,N:173,masa:285.0},
+  ];
+  const BY_SYM_LOCAL = {};
+  ELEMENTS_DATA.forEach(e => { BY_SYM_LOCAL[e.sim.toLowerCase()] = e; });
+
+  // ─── POBLAR SELECTOR ────────────────────────────────────────────────────────
+  const elemSelect = document.getElementById('elemSelect');
+  ELEMENTS_DATA.forEach(e => {
+    const opt = document.createElement('option');
+    opt.value = e.sim;
+    opt.textContent = `${e.sim} — ${e.nom} (Z=${e.Z})`;
+    elemSelect.appendChild(opt);
+  });
+
+  // ─── CHARTS ACTIVOS ─────────────────────────────────────────────────────────
+  let chartIndBar = null;
+  let chartComp   = null;
+
+  // ─── RENDER INDIVIDUAL ──────────────────────────────────────────────────────
+  function renderIndividual(sym) {
+    const el = BY_SYM_LOCAL[sym.toLowerCase()];
+    if (!el) return;
+
+    // Intentar via API si hay servidor, si no usar local
+    tryAPI(`/api/tabla/${sym}`)
+      .then(data => buildIndividualUI(data || localTabla(el), el))
+      .catch(() => buildIndividualUI(localTabla(el), el));
+  }
+
+  function localTabla(el) {
+    const A = el.Z + el.N;
+    return {
+      simbolo: el.sim, nombre: el.nom,
+      filas: [
+        {columna:"# Atómico",       formula:"Z",        valor: el.Z},
+        {columna:"Protones",        formula:"e+",       valor: el.Z},
+        {columna:"Electrones",      formula:"e-",       valor: el.Z},
+        {columna:"Neutrones",       formula:"N = A − Z",valor: el.N},
+        {columna:"# Másico / Peso", formula:"A = Z + N",valor: A},
+        {columna:"Masa Atómica (u)","formula":"—",      valor: el.masa},
+      ]
+    };
+  }
+
+  function buildIndividualUI(data, elRaw) {
+    const A = elRaw.Z + elRaw.N;
+    const content = document.getElementById('individual-content');
+
+    content.innerHTML = `
+      <div class="panel-elem">
+        <!-- TABLA -->
+        <div class="analisis-card">
+          <div class="card-title">// Tabla de datos — ${data.nombre}</div>
+          <div class="elem-hero">
+            <div class="elem-hero-sym" id="heroSym">${data.simbolo}</div>
+            <div class="elem-hero-info">
+              <div class="name">${data.nombre}</div>
+              <div class="z">Z = ${elRaw.Z} &nbsp;·&nbsp; Masa = ${elRaw.masa} u</div>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Propiedad</th>
+                <th>Fórmula</th>
+                <th style="text-align:right">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.filas.map(f => `
+                <tr>
+                  <td>${f.columna}</td>
+                  <td class="formula-col">${f.formula}</td>
+                  <td class="val-col">${f.valor}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- GRÁFICA DE BARRAS -->
+        <div class="analisis-card">
+          <div class="card-title">// Gráfica de partículas — ${data.simbolo}</div>
+          <div class="chart-wrap">
+            <canvas id="chartIndBar"></canvas>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Destruir chart previo
+    if (chartIndBar) { chartIndBar.destroy(); chartIndBar = null; }
+
+    const ctx = document.getElementById('chartIndBar').getContext('2d');
+    const labels = ["Protones\n(e+)", "Electrones\n(e-)", "Neutrones\n(N)", "# Másico\n(A)"];
+    const values = [elRaw.Z, elRaw.Z, elRaw.N, A];
+    const colors = ['#ff6b35','#4ecdc4','#a8c5da','#ffc857'];
+
+    chartIndBar = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["Protones (e+)", "Electrones (e-)", "Neutrones (N)", "# Másico (A)"],
+        datasets: [{
+          label: data.simbolo,
+          data: values,
+          backgroundColor: colors.map(c => c + 'bb'),
+          borderColor: colors,
+          borderWidth: 2,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#050a0f',
+            borderColor: '#00d4ff44',
+            borderWidth: 1,
+            titleColor: '#00d4ff',
+            bodyColor: '#c8e6f0',
+            titleFont: { family: 'Share Tech Mono', size: 12 },
+            bodyFont: { family: 'Share Tech Mono', size: 12 },
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#c8e6f0aa', font: { family: 'Share Tech Mono', size: 10 } },
+            grid: { color: 'rgba(0,212,255,0.06)' },
+          },
+          y: {
+            ticks: { color: '#c8e6f0aa', font: { family: 'Share Tech Mono', size: 10 } },
+            grid: { color: 'rgba(0,212,255,0.08)' },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  }
+
+  // ─── RENDER COMPARACIÓN ─────────────────────────────────────────────────────
+  function renderComparacion(desde, hasta) {
+    const subset = ELEMENTS_DATA.filter(e => e.Z >= desde && e.Z <= hasta);
+    buildCompChart(subset);
+  }
+
+  function buildCompChart(subset) {
+    if (chartComp) { chartComp.destroy(); chartComp = null; }
+    const ctx = document.getElementById('chartComparacion').getContext('2d');
+    const labels = subset.map(e => e.sim);
+
+    chartComp = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Protones e+',
+            data: subset.map(e => e.Z),
+            borderColor: '#ff6b35',
+            backgroundColor: 'rgba(255,107,53,0.08)',
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.2,
+          },
+          {
+            label: 'Electrones e-',
+            data: subset.map(e => e.Z),
+            borderColor: '#4ecdc4',
+            backgroundColor: 'rgba(78,205,196,0.08)',
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.2,
+          },
+          {
+            label: 'Neutrones N = A − Z',
+            data: subset.map(e => e.N),
+            borderColor: '#a8c5da',
+            backgroundColor: 'rgba(168,197,218,0.08)',
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.2,
+          },
+          {
+            label: '# Másico A = Z + N',
+            data: subset.map(e => e.Z + e.N),
+            borderColor: '#ffc857',
+            backgroundColor: 'rgba(255,200,87,0.08)',
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.2,
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#c8e6f0aa',
+              font: { family: 'Share Tech Mono', size: 10 },
+              boxWidth: 18,
+              padding: 14,
+            }
+          },
+          tooltip: {
+            backgroundColor: '#050a0f',
+            borderColor: '#00d4ff44',
+            borderWidth: 1,
+            titleColor: '#00d4ff',
+            bodyColor: '#c8e6f0',
+            titleFont: { family: 'Share Tech Mono', size: 12 },
+            bodyFont: { family: 'Share Tech Mono', size: 11 },
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#c8e6f0aa',
+              font: { family: 'Share Tech Mono', size: 9 },
+              maxRotation: 90, minRotation: 45,
+              autoSkip: true, maxTicksLimit: 30,
+            },
+            grid: { color: 'rgba(0,212,255,0.05)' },
+          },
+          y: {
+            ticks: { color: '#c8e6f0aa', font: { family: 'Share Tech Mono', size: 10 } },
+            grid: { color: 'rgba(0,212,255,0.08)' },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  }
+
+  // ─── UTILS ──────────────────────────────────────────────────────────────────
+  async function tryAPI(url) {
+    try {
+      const r = await fetch(url, { signal: AbortSignal.timeout(800) });
+      if (!r.ok) throw new Error();
+      return await r.json();
+    } catch { return null; }
+  }
+
+  // ─── EVENTOS DE LA SECCIÓN ANÁLISIS ─────────────────────────────────────────
+  document.getElementById('btnAnalizar').addEventListener('click', () => {
+    const sym = elemSelect.value;
+    if (sym) renderIndividual(sym);
+  });
+
+  elemSelect.addEventListener('change', () => {
+    const sym = elemSelect.value;
+    if (sym) renderIndividual(sym);
+  });
+
+  document.getElementById('btnComparar').addEventListener('click', () => {
+    const desde = parseInt(document.getElementById('rangeDesde').value) || 1;
+    const hasta  = parseInt(document.getElementById('rangeHasta').value) || 36;
+    renderComparacion(desde, hasta);
+  });
+
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+      // Si cambia a comparación y no hay gráfica, renderizar default
+      if (btn.dataset.tab === 'comparacion' && !chartComp) {
+        renderComparacion(1, 36);
+      }
+    });
+  });
+
+  // ─── SINCRONIZAR CON CLICK EN TABLA PERIÓDICA ───────────────────────────────
+  // Cuando hacen click en un elemento, también actualizar la sección de análisis
+
   const catNames = {
     'alkali-metal': 'Metal Alcalino',
     'alkaline-earth-metal': 'Metal Alcalinotérreo',
@@ -1054,6 +1744,20 @@
       configEl.innerHTML = shells.map(s => `<span>${s}</span>`).join('');
 
       overlay.classList.add('active');
+
+      // Sincronizar con sección de análisis
+      const sym = d.symbol;
+      if (sym && BY_SYM_LOCAL[sym.toLowerCase()]) {
+        // Scroll suave a análisis
+        document.getElementById('analisis').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Seleccionar en el dropdown
+        elemSelect.value = sym;
+        // Renderizar
+        setTimeout(() => renderIndividual(sym), 400);
+        // Efecto visual en el elemento
+        el.classList.add('pulse-select');
+        el.addEventListener('animationend', () => el.classList.remove('pulse-select'), { once: true });
+      }
     });
   });
 
