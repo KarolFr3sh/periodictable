@@ -38,7 +38,7 @@ h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5vw,3.6rem);font-wei
 .search-bar input{width:340px;background:rgba(0,212,255,0.06);border:1px solid var(--border);border-radius:4px;padding:10px 16px;color:var(--glow);font-family:'Share Tech Mono',monospace;font-size:0.85rem;letter-spacing:0.08em;outline:none;transition:border-color 0.3s,box-shadow 0.3s;}
 .search-bar input::placeholder{color:var(--text-dim);}
 .search-bar input:focus{border-color:var(--glow);box-shadow:0 0 18px rgba(0,212,255,0.2);}
-.heatmap-select{background:rgba(0,20,40,0.8);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Share Tech Mono',monospace;font-size:0.75rem;padding:8px 12px;cursor:pointer;outline:none;}
+.heatmap-select{background:rgba(0,20,40,0.95);border:1px solid var(--border);border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:0.75rem;padding:8px 12px;cursor:pointer;outline:none;}
 
 /* LEGEND */
 .key-wrap{position:relative;z-index:10;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;padding:4px 20px 16px;}
@@ -133,8 +133,32 @@ h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5vw,3.6rem);font-wei
 
 /* CONTROLS */
 .ctrl-row{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
-.elem-select,.range-input,.ctrl-input{background:rgba(0,20,40,0.8);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:1rem;padding:8px 12px;cursor:pointer;outline:none;transition:border-color 0.2s;}
+.elem-select,.range-input,.ctrl-input{background:rgba(0,20,40,0.95);border:1px solid var(--border);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;padding:8px 12px;cursor:pointer;outline:none;transition:border-color 0.2s;}
 .elem-select:focus,.range-input:focus,.ctrl-input:focus{border-color:var(--glow);}
+.elem-select option{background:#0d2035;color:#fff;}
+.heatmap-select option{background:#0d2035;color:#fff;}
+
+/* ELEMENT PICKER */
+.ep-wrap{position:relative;display:inline-block;min-width:320px;}
+.ep-input{width:100%;background:rgba(0,20,40,0.95);border:1px solid var(--border);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;padding:10px 14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;box-sizing:border-box;}
+.ep-input:focus{border-color:var(--glow);box-shadow:0 0 16px rgba(0,212,255,0.2);}
+.ep-input::placeholder{color:rgba(200,230,240,0.4);}
+.ep-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#060f1c;border:1px solid var(--border);border-radius:8px;max-height:320px;overflow-y:auto;z-index:999;box-shadow:0 12px 40px rgba(0,0,0,0.7);display:none;}
+.ep-dropdown.open{display:block;}
+.ep-option{display:flex;align-items:center;gap:12px;padding:8px 12px;cursor:pointer;border-bottom:1px solid rgba(0,212,255,0.06);transition:background 0.15s;}
+.ep-option:hover,.ep-option.focused{background:rgba(0,212,255,0.1);}
+.ep-option:last-child{border-bottom:none;}
+.ep-sym{font-family:'Orbitron',sans-serif;font-weight:700;font-size:1rem;min-width:38px;text-align:center;}
+.ep-info{flex:1;}
+.ep-name{font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:600;color:#fff;}
+.ep-meta{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:rgba(200,230,240,0.45);}
+.ep-badge{font-family:'Share Tech Mono',monospace;font-size:0.6rem;padding:2px 7px;border-radius:10px;border:1px solid;white-space:nowrap;}
+.ep-selected{display:flex;align-items:center;gap:10px;margin-top:8px;padding:8px 14px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:8px;min-height:48px;}
+.ep-selected-sym{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.8rem;line-height:1;}
+.ep-selected-info .ep-selected-name{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
+.ep-selected-info .ep-selected-z{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:rgba(200,230,240,0.5);}
+.ep-empty{padding:20px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(200,230,240,0.35);}
+
 .range-input,.ctrl-input{font-family:'Share Tech Mono',monospace;font-size:0.85rem;width:80px;}
 .range-label{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:var(--text-dim);}
 .btn{font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;padding:8px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,255,136,0.1));border:1px solid var(--glow);border-radius:6px;color:var(--glow);cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
@@ -279,6 +303,9 @@ footer::before{content:'';display:block;width:120px;height:1px;background:var(--
   <button class="nav-btn" data-section="compuestos">🧪 Compuestos</button>
   <button class="nav-btn" data-section="quiz">🎯 Quiz</button>
   <button class="nav-btn" data-section="historia">📜 Historia</button>
+  <button class="nav-btn" data-section="atomoNeutro">🔵 Átomo Neutro</button>
+  <button class="nav-btn" data-section="ionesTabla">⚡ Tabla Iones</button>
+  <button class="nav-btn" data-section="graficasBarras">📊 Gráficas</button>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════ TABLA SECTION -->
@@ -479,7 +506,7 @@ footer::before{content:'';display:block;width:120px;height:1px;background:var(--
 <div class="section" id="sec-individual">
   <div class="section-header"><div class="section-title">⚛ Elemento Individual</div><div class="section-divider"></div></div>
   <div class="ctrl-row">
-    <select class="elem-select" id="elemSelect" style="min-width:280px;"><option value="">— Selecciona un elemento —</option></select>
+    <div class="ep-wrap" id="ep-individual" style="min-width:320px;"></div>
     <button class="btn" id="btnAnalizar">▶ Analizar</button>
   </div>
   <div id="individual-content">
@@ -517,7 +544,7 @@ footer::before{content:'';display:block;width:120px;height:1px;background:var(--
 <div class="section" id="sec-isotopos">
   <div class="section-header"><div class="section-title">☢ Isótopos</div><div class="section-divider"></div></div>
   <div class="ctrl-row">
-    <select class="elem-select" id="isotopeSelect" style="min-width:280px;"><option value="">— Selecciona elemento —</option></select>
+    <div class="ep-wrap" id="ep-isotope" style="min-width:320px;"></div>
   </div>
   <div id="isotope-content">
     <div class="placeholder-msg"><div class="icon">☢</div><span>Selecciona un elemento para ver sus isótopos</span></div>
@@ -857,10 +884,280 @@ footer::before{content:'';display:block;width:120px;height:1px;background:var(--
   <div class="analisis-card" style="margin-top:0;">
     <div class="card-title">// Buscar historia de un elemento</div>
     <div class="ctrl-row">
-      <select class="elem-select" id="histElemSelect" style="min-width:280px;"><option value="">— Selecciona —</option></select>
+      <div class="ep-wrap" id="ep-historia" style="min-width:320px;"></div>
     </div>
     <div id="histElemDetail">
       <div class="placeholder-msg"><div class="icon">📜</div><span>Selecciona un elemento para ver su historia</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ÁTOMO NEUTRO SECTION -->
+<div class="section" id="sec-atomoNeutro">
+  <div class="section-header"><div class="section-title">🔵 Construye un Átomo Neutro</div><div class="section-divider"></div></div>
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title">// ¿Cómo funciona? — En un átomo neutro: protones = electrones, carga neta = 0, neutrones = A − Z</div>
+    <p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);line-height:1.6;">Selecciona un elemento o ingresa el número de protones y la tabla se completa automáticamente con todos sus datos.</p>
+  </div>
+  <!-- INTERACTIVE BUILDER -->
+  <div class="analisis-card" style="margin-bottom:24px;">
+    <div class="card-title">// Constructor interactivo — ingresa protones para ver el átomo neutro</div>
+    <div class="ctrl-row" style="margin-bottom:20px;">
+      <div class="ep-wrap" id="ep-neutro" style="min-width:320px;"></div>
+      <span class="range-label">ó escribe protones:</span>
+      <input class="range-input" type="number" id="neutralProtons" min="1" max="118" placeholder="Z" style="width:70px;">
+      <button class="btn" id="btnNeutralAdd">＋ Agregar fila</button>
+      <button class="btn btn-danger" id="btnNeutralClear">✕ Limpiar</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" id="neutralTable">
+        <thead>
+          <tr>
+            <th style="min-width:120px;">Elemento</th>
+            <th>Símbolo</th>
+            <th>Protones (Z)</th>
+            <th>Electrones (e⁻)</th>
+            <th>Neutrones (N)</th>
+            <th>Carga neta</th>
+            <th>Número de masa (A=Z+N)</th>
+            <th>Config. capas</th>
+          </tr>
+        </thead>
+        <tbody id="neutralTableBody">
+          <tr>
+            <td colspan="8" style="text-align:center;color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:0.75rem;padding:20px;">
+              Selecciona un elemento o ingresa protones y presiona "Agregar fila"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- ALL 118 ELEMENTS TABLE -->
+  <div class="analisis-card">
+    <div class="card-title">// Tabla completa — los 118 elementos con su composición atómica neutra</div>
+    <div class="ctrl-row">
+      <input class="ctrl-input" type="text" id="neutralSearch" placeholder="Filtrar por nombre, símbolo o Z..." style="width:280px;">
+      <select class="elem-select" id="neutralCatFilter" style="min-width:180px;">
+        <option value="">Todas las categorías</option>
+        <option value="alkali-metal">Metal Alcalino</option>
+        <option value="alkaline-earth-metal">Metal Alcalinotérreo</option>
+        <option value="transition-metal">Metal de Transición</option>
+        <option value="post-transition-metal">Metal Post-transición</option>
+        <option value="lanthanoid">Lantanóide</option>
+        <option value="actinoid">Actínido</option>
+        <option value="metalloid">Metaloide</option>
+        <option value="other-nonmetal">No Metal</option>
+        <option value="noble-gas">Gas Noble</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+    </div>
+    <div style="overflow-x:auto;max-height:520px;overflow-y:auto;">
+      <table class="data-table" id="allNeutralTable">
+        <thead style="position:sticky;top:0;background:#050a0f;z-index:5;">
+          <tr>
+            <th>Z</th>
+            <th>Símbolo</th>
+            <th>Elemento</th>
+            <th>Protones</th>
+            <th>Electrones</th>
+            <th>Neutrones</th>
+            <th>Carga neta</th>
+            <th>Nº Másico (A)</th>
+            <th>Masa (u)</th>
+            <th>Estado</th>
+            <th>Categoría</th>
+          </tr>
+        </thead>
+        <tbody id="allNeutralBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TABLA IONES SECTION -->
+<div class="section" id="sec-ionesTabla">
+  <div class="section-header"><div class="section-title">⚡ Formemos Iones — Átomo Neutro vs Ión</div><div class="section-divider"></div></div>
+
+  <!-- EXPLANATION CARDS -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="analisis-card" style="border-color:rgba(255,107,53,0.4);">
+      <div class="card-title" style="color:#ff6b35;">// ⊕ Catión — CEDE electrones</div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);line-height:1.6;">El átomo <strong style="color:#ff6b35;">pierde</strong> electrones → los protones superan a los electrones → <strong style="color:#ff6b35;">carga positiva (+)</strong>.<br>Los neutrones y el número másico <strong>no cambian</strong>.</p>
+      <div style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--text-dim);">Ej: Li (3p, 3e⁻) → Li⁺ (3p, <span style="color:#ff6b35">2e⁻</span>) → carga = +1</div>
+    </div>
+    <div class="analisis-card" style="border-color:rgba(78,205,196,0.4);">
+      <div class="card-title" style="color:#4ecdc4;">// ⊖ Anión — GANA electrones</div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);line-height:1.6;">El átomo <strong style="color:#4ecdc4;">gana</strong> electrones → los electrones superan a los protones → <strong style="color:#4ecdc4;">carga negativa (−)</strong>.<br>Los neutrones y el número másico <strong>no cambian</strong>.</p>
+      <div style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--text-dim);">Ej: F (9p, 9e⁻) → F⁻ (9p, <span style="color:#4ecdc4">10e⁻</span>) → carga = −1</div>
+    </div>
+  </div>
+
+  <!-- SELECTOR -->
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title">// Explorador interactivo — busca un elemento y tipo de ión para ver la tabla completa</div>
+    <div class="ctrl-row" style="flex-wrap:wrap;gap:12px;align-items:flex-end;">
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:5px;">ELEMENTO</div>
+        <div class="ep-wrap" id="ep-ionExplore" style="min-width:280px;"></div>
+      </div>
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:5px;">TIPO DE IÓN</div>
+        <select class="elem-select" id="ionExploreType" style="min-width:180px;">
+          <option value="">— Tipo —</option>
+          <option value="1">Catión +1 (pierde 1 e⁻)</option>
+          <option value="2">Catión +2 (pierde 2 e⁻)</option>
+          <option value="3">Catión +3 (pierde 3 e⁻)</option>
+          <option value="4">Catión +4 (pierde 4 e⁻)</option>
+          <option value="-1">Anión −1 (gana 1 e⁻)</option>
+          <option value="-2">Anión −2 (gana 2 e⁻)</option>
+          <option value="-3">Anión −3 (gana 3 e⁻)</option>
+        </select>
+      </div>
+      <button class="btn" id="btnIonExplore">▶ Ver tabla</button>
+    </div>
+    <div id="ionExploreResult" style="display:none;margin-top:20px;">
+      <div style="overflow-x:auto;">
+        <table class="data-table" id="ionExploreTable">
+          <thead>
+            <tr>
+              <th style="min-width:80px;">Símbolo</th>
+              <th>Protones (Z)</th>
+              <th>Electrones (e⁻)</th>
+              <th>Neutrones (N=A−Z)</th>
+              <th>Elemento</th>
+              <th>Carga neta (p−e)</th>
+              <th>Nº Másico (A=Z+N)</th>
+            </tr>
+          </thead>
+          <tbody id="ionExploreBody"></tbody>
+        </table>
+      </div>
+      <div id="ionExploreNote" style="margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:var(--text-dim);line-height:1.8;"></div>
+    </div>
+  </div>
+
+  <!-- CATIONES TABLE — fixed examples like the image -->
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title" style="color:#ff6b35;">// ⊕ Formemos cationes (+) — cede electrones</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="min-width:90px;">Símbolo</th>
+            <th>Protones (Z)</th>
+            <th>Electrones (e⁻)</th>
+            <th>Neutrones (N=A−Z)</th>
+            <th>Elemento</th>
+            <th>Carga neta (p−e)</th>
+            <th>Nº Másico (A=Z+N)</th>
+          </tr>
+        </thead>
+        <tbody id="catTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ANIONES TABLE -->
+  <div class="analisis-card">
+    <div class="card-title" style="color:#4ecdc4;">// ⊖ Formemos aniones (−) — gana electrones</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="min-width:90px;">Símbolo</th>
+            <th>Protones (Z)</th>
+            <th>Electrones (e⁻)</th>
+            <th>Neutrones (N=A−Z)</th>
+            <th>Elemento</th>
+            <th>Carga neta (p−e)</th>
+            <th>Nº Másico (A=Z+N)</th>
+          </tr>
+        </thead>
+        <tbody id="anTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ GRÁFICAS DE BARRAS SECTION -->
+<div class="section" id="sec-graficasBarras">
+  <div class="section-header"><div class="section-title">📊 Gráficas de Barras — Todos los Elementos</div><div class="section-divider"></div></div>
+  <div class="ctrl-row">
+    <span class="range-label">Mostrar elementos Z:</span>
+    <input class="range-input" type="number" id="barDesde" value="1" min="1" max="118">
+    <span class="range-label">—</span>
+    <input class="range-input" type="number" id="barHasta" value="18" min="1" max="118">
+    <button class="btn" id="btnBarUpdate">▶ Actualizar gráficas</button>
+    <button class="btn" style="font-size:0.58rem;padding:6px 12px;" onclick="document.getElementById('barDesde').value=1;document.getElementById('barHasta').value=10;document.getElementById('btnBarUpdate').click()">Z 1–10</button>
+    <button class="btn" style="font-size:0.58rem;padding:6px 12px;" onclick="document.getElementById('barDesde').value=1;document.getElementById('barHasta').value=20;document.getElementById('btnBarUpdate').click()">Z 1–20</button>
+    <button class="btn" style="font-size:0.58rem;padding:6px 12px;" onclick="document.getElementById('barDesde').value=1;document.getElementById('barHasta').value=36;document.getElementById('btnBarUpdate').click()">Z 1–36</button>
+    <button class="btn" style="font-size:0.58rem;padding:6px 12px;" onclick="document.getElementById('barDesde').value=1;document.getElementById('barHasta').value=54;document.getElementById('btnBarUpdate').click()">Z 1–54</button>
+    <button class="btn" style="font-size:0.58rem;padding:6px 12px;" onclick="document.getElementById('barDesde').value=1;document.getElementById('barHasta').value=86;document.getElementById('btnBarUpdate').click()">Z 1–86</button>
+  </div>
+
+  <!-- MASA ATÓMICA -->
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title">// ⚖ Comparación de masa atómica (u)</div>
+    <div style="position:relative;height:320px;"><canvas id="chartBarMasa"></canvas></div>
+  </div>
+
+  <!-- COMPOSICION NUCLEO -->
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title">// ☢ Composición del núcleo atómico — Protones vs Neutrones</div>
+    <div style="position:relative;height:320px;"><canvas id="chartBarNucleo"></canvas></div>
+  </div>
+
+  <!-- PROTONES ELECTRONES NEUTRONES MASICO -->
+  <div class="analisis-card" style="margin-bottom:20px;">
+    <div class="card-title">// ⚛ Comparativa completa — Protones · Electrones · Neutrones · Nº Másico</div>
+    <div style="position:relative;height:340px;"><canvas id="chartBarCompleto"></canvas></div>
+  </div>
+
+  <!-- ELECTRONEGATIVITY -->
+  <div class="grid-2">
+    <div class="analisis-card">
+      <div class="card-title">// ⚡ Electronegatividad (Pauling)</div>
+      <div style="position:relative;height:300px;"><canvas id="chartBarEN"></canvas></div>
+    </div>
+    <div class="analisis-card">
+      <div class="card-title">// 📏 Radio atómico (pm)</div>
+      <div style="position:relative;height:300px;"><canvas id="chartBarRadio"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ION ENERGY + STATE -->
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="analisis-card">
+      <div class="card-title">// 🔋 Energía de 1ª ionización (kJ/mol)</div>
+      <div style="position:relative;height:300px;"><canvas id="chartBarIoniz"></canvas></div>
+    </div>
+    <div class="analisis-card">
+      <div class="card-title">// 🧊 Estado físico a 25°C por categoría</div>
+      <div style="position:relative;height:300px;"><canvas id="chartPieState"></canvas></div>
+    </div>
+  </div>
+
+  <!-- TABLE BELOW CHART -->
+  <div class="analisis-card" style="margin-top:16px;">
+    <div class="card-title">// Tabla de datos del rango seleccionado</div>
+    <div style="overflow-x:auto;max-height:420px;overflow-y:auto;">
+      <table class="data-table">
+        <thead style="position:sticky;top:0;background:#050a0f;">
+          <tr>
+            <th>Z</th><th>Símbolo</th><th>Elemento</th>
+            <th style="text-align:right">Protones</th>
+            <th style="text-align:right">Electrones</th>
+            <th style="text-align:right">Neutrones</th>
+            <th style="text-align:right">Nº Másico</th>
+            <th style="text-align:right">Masa (u)</th>
+            <th style="text-align:right">Electroneg.</th>
+            <th style="text-align:right">Radio (pm)</th>
+            <th style="text-align:right">E. Ioniz.</th>
+          </tr>
+        </thead>
+        <tbody id="barTableBody"></tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -872,6 +1169,102 @@ footer::before{content:'';display:block;width:120px;height:1px;background:var(--
 // ═══════════════════════════════════════════════════════════════════
 // DATA
 // ═══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// ELEMENT PICKER COMPONENT
+// ═══════════════════════════════════════════
+class ElementPicker {
+  constructor(containerId, placeholder, onSelect){
+    this.container = document.getElementById(containerId);
+    this.onSelect = onSelect;
+    this.value = null;
+    this.focusIdx = -1;
+    this._build(placeholder);
+  }
+
+  _build(placeholder){
+    this.container.innerHTML = `
+      <input class="ep-input" type="text" placeholder="${placeholder||'🔍 Buscar elemento, símbolo o Z...'}">
+      <div class="ep-dropdown"></div>
+      <div class="ep-selected" style="display:none;"></div>`;
+    this.input = this.container.querySelector('.ep-input');
+    this.dropdown = this.container.querySelector('.ep-dropdown');
+    this.selectedBox = this.container.querySelector('.ep-selected');
+
+    this.input.addEventListener('input', ()=>this._render(this.input.value));
+    this.input.addEventListener('focus', ()=>this._render(this.input.value));
+    this.input.addEventListener('keydown', e=>this._key(e));
+    document.addEventListener('click', e=>{
+      if(!this.container.contains(e.target)) this._close();
+    });
+  }
+
+  _render(q){
+    const query = q.trim().toLowerCase();
+    let results = ELEMENTS_DATA;
+    if(query){
+      results = ELEMENTS_DATA.filter(e=>
+        e.sim.toLowerCase().startsWith(query) ||
+        e.nom.toLowerCase().includes(query) ||
+        String(e.Z) === query ||
+        String(e.Z).startsWith(query)
+      ).slice(0,30);
+    } else {
+      results = ELEMENTS_DATA.slice(0,50);
+    }
+    if(!results.length){
+      this.dropdown.innerHTML = `<div class="ep-empty">No se encontró ningún elemento</div>`;
+    } else {
+      this.dropdown.innerHTML = results.map((e,i)=>{
+        const col = CAT_COLORS[e.cat]||'#00d4ff';
+        return `<div class="ep-option" data-sym="${e.sim}" data-idx="${i}">
+          <div class="ep-sym" style="color:${col};text-shadow:0 0 10px ${col}44;">${e.sim}</div>
+          <div class="ep-info">
+            <div class="ep-name">${e.nom}</div>
+            <div class="ep-meta">Z=${e.Z} · A≈${Math.round(e.masa)} · ${e.N}n</div>
+          </div>
+          <div class="ep-badge" style="color:${col};border-color:${col}55;">${CAT_NAMES[e.cat]||''}</div>
+        </div>`;
+      }).join('');
+      this.dropdown.querySelectorAll('.ep-option').forEach(opt=>{
+        opt.addEventListener('click',()=>this._select(opt.dataset.sym));
+      });
+    }
+    this.focusIdx = -1;
+    this.dropdown.classList.add('open');
+  }
+
+  _key(e){
+    const opts = [...this.dropdown.querySelectorAll('.ep-option')];
+    if(e.key==='ArrowDown'){e.preventDefault();this.focusIdx=Math.min(this.focusIdx+1,opts.length-1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();this.focusIdx=Math.max(this.focusIdx-1,0);}
+    else if(e.key==='Enter'&&this.focusIdx>=0){e.preventDefault();this._select(opts[this.focusIdx].dataset.sym);return;}
+    else if(e.key==='Escape'){this._close();return;}
+    opts.forEach((o,i)=>o.classList.toggle('focused',i===this.focusIdx));
+    if(this.focusIdx>=0) opts[this.focusIdx].scrollIntoView({block:'nearest'});
+  }
+
+  _select(sym){
+    const el = BY_SYM[sym.toLowerCase()];
+    if(!el) return;
+    this.value = sym;
+    const col = CAT_COLORS[el.cat]||'#00d4ff';
+    this.selectedBox.innerHTML = `
+      <div class="ep-selected-sym" style="color:${col};text-shadow:0 0 20px ${col}66;">${el.sim}</div>
+      <div class="ep-selected-info">
+        <div class="ep-selected-name">${el.nom}</div>
+        <div class="ep-selected-z">Z=${el.Z} · Masa=${el.masa} u · ${el.N} neutrones</div>
+      </div>
+      <div style="flex:1;"></div>
+      <button onclick="this.closest('.ep-selected').style.display='none';this.closest('.ep-wrap').querySelector('.ep-input').value=''" style="background:none;border:none;color:rgba(200,230,240,0.4);cursor:pointer;font-size:1rem;padding:4px 8px;">✕</button>`;
+    this.selectedBox.style.display = 'flex';
+    this.input.value = '';
+    this._close();
+    if(this.onSelect) this.onSelect(sym, el);
+  }
+
+  _close(){ this.dropdown.classList.remove('open'); this.focusIdx = -1; }
+}
+
 const ELEMENTS_DATA = [
   {sim:"H",nom:"Hidrógeno",Z:1,N:0,masa:1.008,en:2.2,radius:53,ioniz:1312,state:"G",year:1766,scientist:"Cavendish",cat:"other-nonmetal"},
   {sim:"He",nom:"Helio",Z:2,N:2,masa:4.003,en:null,radius:31,ioniz:2372,state:"G",year:1895,scientist:"Ramsay",cat:"noble-gas"},
@@ -1063,15 +1456,89 @@ navBtns.forEach(btn => {
 // ═══════════════════════════════════════════
 // POPULATE SELECTS
 // ═══════════════════════════════════════════
-['elemSelect','isotopeSelect','histElemSelect'].forEach(id=>{
-  const sel = document.getElementById(id);
-  if(!sel) return;
-  ELEMENTS_DATA.forEach(e=>{
-    const o=document.createElement('option');
-    o.value=e.sim; o.textContent=`${e.sim} — ${e.nom} (Z=${e.Z})`;
-    sel.appendChild(o);
-  });
+// Initialize all ElementPickers
+const epIndividual = new ElementPicker('ep-individual', '🔍 Buscar elemento, símbolo o Z...', (sym)=>{
+  renderIndividual(sym);
 });
+const epIsotope = new ElementPicker('ep-isotope', '🔍 Buscar elemento para ver isótopos...', (sym, el)=>{
+  showIsotopes(sym, el);
+});
+const epHistoria = new ElementPicker('ep-historia', '🔍 Buscar elemento para ver su historia...', (sym, el)=>{
+  showHistoriaElem(sym, el);
+});
+const epNeutro = new ElementPicker('ep-neutro', '🔍 Buscar elemento para átomo neutro...', (sym, el)=>{
+  document.getElementById('neutralProtons').value = el.Z;
+  addNeutralRow(el);
+});
+// Ion explorer picker — initialized here so the input shows immediately
+const epIonExplore = new ElementPicker('ep-ionExplore', '🔍 Buscar elemento...', null);
+
+// ═══════════════════════════════════════════
+// ÁTOMO NEUTRO — buttons wired immediately
+// ═══════════════════════════════════════════
+document.getElementById('btnNeutralAdd').addEventListener('click',()=>{
+  const protonVal = parseInt(document.getElementById('neutralProtons').value);
+  let el = null;
+  if(epNeutro && epNeutro.value) el = BY_SYM[epNeutro.value.toLowerCase()];
+  else if(protonVal >= 1 && protonVal <= 118) el = ELEMENTS_DATA.find(e => e.Z === protonVal);
+  if(!el){ alert('Busca un elemento con el buscador o ingresa un Z válido (1–118)'); return; }
+  addNeutralRow(el);
+});
+
+document.getElementById('btnNeutralClear').addEventListener('click',()=>{
+  document.getElementById('neutralTableBody').innerHTML =
+    '<tr><td colspan="8" style="text-align:center;color:var(--text-dim);font-family:\'Share Tech Mono\',monospace;font-size:0.75rem;padding:20px;">Selecciona un elemento o ingresa protones y presiona "+ Agregar fila"</td></tr>';
+});
+
+document.getElementById('neutralProtons').addEventListener('keydown', e=>{
+  if(e.key === 'Enter'){
+    const protonVal = parseInt(e.target.value);
+    const el = ELEMENTS_DATA.find(e => e.Z === protonVal);
+    if(el) addNeutralRow(el);
+    else alert('Z inválido. Ingresa un número entre 1 y 118');
+  }
+});
+
+// Search + filter for all-118 table — also wired immediately
+document.getElementById('neutralSearch').addEventListener('input', function(){
+  buildAllNeutralTable(this.value, document.getElementById('neutralCatFilter').value);
+});
+document.getElementById('neutralCatFilter').addEventListener('change', function(){
+  buildAllNeutralTable(document.getElementById('neutralSearch').value, this.value);
+});
+
+// Ver tabla button
+document.getElementById('btnIonExplore').addEventListener('click', () => {
+  const sym = epIonExplore.value;
+  const ionVal = document.getElementById('ionExploreType').value;
+  if(!sym){ alert('Primero busca y selecciona un elemento'); return; }
+  if(!ionVal){ alert('Selecciona un tipo de ión'); return; }
+  const el = BY_SYM[sym.toLowerCase()];
+  if(!el){ alert('Elemento no encontrado'); return; }
+  const charge = parseInt(ionVal);
+  const isCat = charge > 0;
+  const ionColor = isCat ? '#ff6b35' : '#4ecdc4';
+  const diff = Math.abs(charge);
+  const action = isCat
+    ? `cede ${diff} electrón${diff>1?'es':''}`
+    : `gana ${diff} electrón${diff>1?'es':''}`;
+
+  document.getElementById('ionExploreBody').innerHTML =
+    ionRow(el, false, 0) + ionRow(el, true, charge);
+
+  document.getElementById('ionExploreNote').innerHTML =
+    `▶ <strong style="color:#fff">${el.nom}</strong> ${action} → pasa de carga
+     <span style="color:var(--glow2)">0</span> a carga
+     <span style="color:${ionColor};font-weight:700">${charge>0?'+'+charge:charge}</span><br>
+     ▶ Electrones: <span style="color:#4ecdc4">${el.Z}</span> →
+       <span style="color:${ionColor};font-weight:700">${el.Z - charge}</span>
+       &nbsp;·&nbsp; Protones, neutrones y Nº másico:
+       <span style="color:var(--glow)">sin cambio</span>`;
+
+  document.getElementById('ionExploreResult').style.display = 'block';
+  document.getElementById('ionExploreResult').scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
 
 // Mass ref grid
 const massRefGrid = document.getElementById('massRefGrid');
@@ -1240,12 +1707,7 @@ function applyHeatmap(prop){
 // ═══════════════════════════════════════════
 let chartIndBar=null;
 document.getElementById('btnAnalizar').addEventListener('click',()=>{
-  const sym=document.getElementById('elemSelect').value;
-  if(sym) renderIndividual(sym);
-});
-document.getElementById('elemSelect').addEventListener('change',()=>{
-  const sym=document.getElementById('elemSelect').value;
-  if(sym) renderIndividual(sym);
+  if(epIndividual && epIndividual.value) renderIndividual(epIndividual.value);
 });
 
 function renderIndividual(sym){
@@ -1335,8 +1797,7 @@ function renderTrendCharts(){
 // ═══════════════════════════════════════════
 // ISOTOPES
 // ═══════════════════════════════════════════
-document.getElementById('isotopeSelect').addEventListener('change',function(){
-  const el=BY_SYM[this.value.toLowerCase()];
+function showIsotopes(sym, el){
   if(!el){document.getElementById('isotope-content').innerHTML='<div class="placeholder-msg"><div class="icon">☢</div><span>Selecciona un elemento</span></div>';return;}
   const isos=ISOTOPES[el.Z]||[];
   const content=document.getElementById('isotope-content');
@@ -1361,7 +1822,8 @@ document.getElementById('isotopeSelect').addEventListener('change',function(){
       <div class="card-title">// ¿Qué es un isótopo?</div>
       <p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);line-height:1.6;">Los isótopos son átomos del mismo elemento que tienen el mismo número de protones (Z) pero diferente número de neutrones (N). Por eso tienen el mismo comportamiento químico pero diferente masa atómica. Algunos son estables, otros son radiactivos y se desintegran con el tiempo.</p>
     </div>`;
-});
+}
+
 
 // ═══════════════════════════════════════════
 // MOLAR MASS CALCULATOR
@@ -1560,8 +2022,7 @@ function initHistory(){
   });
 }
 
-document.getElementById('histElemSelect').addEventListener('change',function(){
-  const el=BY_SYM[this.value.toLowerCase()];
+function showHistoriaElem(sym, el){
   const div=document.getElementById('histElemDetail');
   if(!el){div.innerHTML='<div class="placeholder-msg"><div class="icon">📜</div><span>Selecciona un elemento</span></div>';return;}
   const h=HISTORY[el.Z];
@@ -1577,7 +2038,8 @@ document.getElementById('histElemSelect').addEventListener('change',function(){
     </div>
     ${h?`<p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);line-height:1.7;">${h.desc}</p><div style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:var(--text-dim);">${h.scientist}</div>`:'<p style="font-family:\'Share Tech Mono\',monospace;font-size:0.78rem;color:var(--text-dim);">Información histórica detallada no disponible para este elemento.</p>'}
   </div>`;
-});
+}
+
 
 // ═══════════════════════════════════════════
 // CLICK ELEMENT → GO TO INDIVIDUAL
@@ -1586,14 +2048,288 @@ document.querySelectorAll('.element').forEach(el=>{
   el.addEventListener('click',()=>{
     const sym=el.dataset.symbol;
     if(sym&&BY_SYM[sym.toLowerCase()]){
-      const eSelect=document.getElementById('elemSelect');
-      eSelect.value=sym;
-      setTimeout(()=>{
-        renderIndividual(sym);
-      },100);
+      setTimeout(()=>{ renderIndividual(sym); },100);
     }
   });
 });
+
+// ═══════════════════════════════════════════
+// NEW SECTION INIT IN NAV
+// ═══════════════════════════════════════════
+const _origNavHandler = navBtns[0].__handler;
+navBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const id='sec-'+btn.dataset.section;
+    if(!chartsInit[id]){
+      chartsInit[id]=true;
+      if(id==='sec-atomoNeutro') initAtomoNeutro();
+      if(id==='sec-ionesTabla') initIonesTabla();
+      if(id==='sec-graficasBarras') initGraficasBarras();
+    }
+  });
+});
+
+// ═══════════════════════════════════════════
+// ÁTOMO NEUTRO
+// ═══════════════════════════════════════════
+function initAtomoNeutro(){
+  buildAllNeutralTable('');
+}
+
+// Run immediately so table is pre-populated when user arrives
+buildAllNeutralTable('');
+
+const neutralRows=[];
+function addNeutralRow(el){
+  // Remove placeholder
+  const body=document.getElementById('neutralTableBody');
+  if(body.querySelector('td[colspan]')) body.innerHTML='';
+  const A=el.Z+el.N;
+  const stL={S:'Sólido',L:'Líquido',G:'Gas'};
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td style="color:#fff;font-weight:600;">${el.nom}</td>
+    <td style="font-family:'Orbitron',sans-serif;color:var(--glow);font-weight:700;">${el.sim}</td>
+    <td class="val-col">${el.Z}</td>
+    <td class="val-col">${el.Z}</td>
+    <td class="val-col">${el.N}</td>
+    <td style="color:var(--glow2);font-weight:700;text-align:right;">0</td>
+    <td class="val-col">${A}</td>
+    <td style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--text-dim);">${el.Z<=86? getShells(el.Z) : '—'}</td>`;
+  body.appendChild(tr);
+}
+
+function getShells(Z){
+  const el=ELEMENTS_DATA.find(e=>e.Z===Z);
+  if(!el) return '—';
+  // Use config from DOM data
+  const domEl=document.querySelector(`.element[data-number="${Z}"]`);
+  if(domEl) return domEl.dataset.config||'—';
+  return '—';
+}
+
+function buildAllNeutralTable(search='', catFilter=''){
+  const body=document.getElementById('allNeutralBody');
+  const stL={S:'Sólido',L:'Líquido',G:'Gas'};
+  const catCol={
+    'alkali-metal':'#ff6b35','alkaline-earth-metal':'#ffc857','lanthanoid':'#a8c5da',
+    'actinoid':'#b8a9c9','transition-metal':'#4ecdc4','post-transition-metal':'#95d5b2',
+    'metalloid':'#74b3ce','other-nonmetal':'#f4a261','noble-gas':'#c77dff','unknown':'#6c757d'
+  };
+  const q=search.toLowerCase();
+  const filtered=ELEMENTS_DATA.filter(e=>{
+    const matchSearch=!q||e.sim.toLowerCase().includes(q)||e.nom.toLowerCase().includes(q)||String(e.Z).includes(q);
+    const matchCat=!catFilter||e.cat===catFilter;
+    return matchSearch&&matchCat;
+  });
+  body.innerHTML=filtered.map(e=>{
+    const A=e.Z+e.N;
+    const col=catCol[e.cat]||'#6c757d';
+    return `<tr>
+      <td class="val-col">${e.Z}</td>
+      <td style="font-family:'Orbitron',sans-serif;color:${col};font-weight:700;font-size:0.95rem;">${e.sim}</td>
+      <td style="color:#fff;">${e.nom}</td>
+      <td style="text-align:right;color:#ff6b35;">${e.Z}</td>
+      <td style="text-align:right;color:#4ecdc4;">${e.Z}</td>
+      <td style="text-align:right;color:#a8c5da;">${e.N}</td>
+      <td style="text-align:right;color:var(--glow2);font-weight:700;">0</td>
+      <td style="text-align:right;color:var(--glow);">${A}</td>
+      <td style="text-align:right;color:var(--text-dim);">${e.masa}</td>
+      <td style="text-align:right;">${e.state==='S'?'<span style="color:#4ecdc4">Sólido</span>':e.state==='L'?'<span style="color:#ff6b35">Líquido</span>':'<span style="color:#c77dff">Gas</span>'}</td>
+      <td style="color:${col};font-size:0.75rem;">${CAT_NAMES[e.cat]||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+// TABLA IONES (Átomo vs Ión)
+// ═══════════════════════════════════════════
+function ionRow(el, isIon, charge){
+  // charge: positive = cation, negative = anion, 0 = neutral
+  const A = el.Z + el.N;
+  const eCount = el.Z - charge; // neutral: charge=0 → e=Z; cation +2: e=Z-2; anion -1: e=Z+1
+  const cargaNeta = el.Z - eCount; // = charge
+  const isCat = charge > 0;
+  const ionColor = isCat ? '#ff6b35' : '#4ecdc4';
+  const symDisplay = isIon ? makeIonSym(el.sim, charge) : el.sim;
+  const symColor = isIon ? ionColor : 'var(--glow)';
+  const eColor = isIon ? ionColor : '#4ecdc4';
+  const chargeDisplay = isIon
+    ? `<span style="color:${ionColor};font-weight:700;">${charge > 0 ? '+'+charge : charge}</span>`
+    : `<span style="color:var(--glow2);font-weight:700;">0</span>`;
+  const rowBg = isIon ? 'rgba(0,0,0,0.18)' : 'rgba(0,212,255,0.04)';
+  const borderB = isIon ? `border-bottom:3px solid ${ionColor}44;` : '';
+  return `<tr style="background:${rowBg};${borderB}">
+    <td style="font-family:'Orbitron',sans-serif;font-weight:700;color:${symColor};font-size:0.95rem;letter-spacing:0.04em;">${symDisplay}</td>
+    <td style="text-align:right;color:#ff6b35;">${el.Z}</td>
+    <td style="text-align:right;color:${eColor};font-weight:${isIon?'700':'400'};">${eCount}</td>
+    <td style="text-align:right;color:#a8c5da;">${el.N}</td>
+    <td style="color:#fff;">${el.nom}</td>
+    <td style="text-align:right;">${chargeDisplay}</td>
+    <td style="text-align:right;color:var(--glow);">${A}</td>
+  </tr>`;
+}
+
+function makeIonSym(sym, charge){
+  if(charge===0) return sym;
+  const abs = Math.abs(charge);
+  const sign = charge > 0 ? '⁺' : '⁻';
+  const supNum = abs===1 ? '' : ['','¹','²','³','⁴','⁵'][abs] || String(abs);
+  return sym + supNum + sign;
+}
+
+function initIonesTabla(){
+  // Fixed cation pairs: {sym, charge} — each appears as neutral row + ion row
+  const catPairs = [
+    {sym:'Li', charge:1}, {sym:'Mg', charge:2},
+    {sym:'Na', charge:1}, {sym:'K',  charge:1},
+    {sym:'Ca', charge:2}, {sym:'Al', charge:3},
+    {sym:'Fe', charge:2}, {sym:'Fe', charge:3},
+    {sym:'Cu', charge:1}, {sym:'Cu', charge:2},
+    {sym:'Zn', charge:2}, {sym:'Ag', charge:1},
+    {sym:'Ba', charge:2}, {sym:'Pb', charge:2},
+    {sym:'Cr', charge:3}, {sym:'Mn', charge:2},
+    {sym:'Co', charge:2}, {sym:'Ni', charge:2},
+    {sym:'Sn', charge:2}, {sym:'Hg', charge:2},
+  ];
+
+  const anPairs = [
+    {sym:'F',  charge:-1}, {sym:'S',  charge:-2},
+    {sym:'Cl', charge:-1}, {sym:'O',  charge:-2},
+    {sym:'N',  charge:-3}, {sym:'P',  charge:-3},
+    {sym:'Br', charge:-1}, {sym:'I',  charge:-1},
+    {sym:'Se', charge:-2}, {sym:'Te', charge:-2},
+  ];
+
+  const catBody = document.getElementById('catTableBody');
+  if(catBody) catBody.innerHTML = catPairs.map(p => {
+    const el = BY_SYM[p.sym.toLowerCase()]; if(!el) return '';
+    return ionRow(el, false, 0) + ionRow(el, true, p.charge);
+  }).join('');
+
+  const anBody = document.getElementById('anTableBody');
+  if(anBody) anBody.innerHTML = anPairs.map(p => {
+    const el = BY_SYM[p.sym.toLowerCase()]; if(!el) return '';
+    return ionRow(el, false, 0) + ionRow(el, true, p.charge);
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+// GRÁFICAS DE BARRAS
+// ═══════════════════════════════════════════
+let barCharts={};
+function initGraficasBarras(){ renderBarCharts(); }
+document.addEventListener('DOMContentLoaded',()=>{
+  const btn=document.getElementById('btnBarUpdate');
+  if(btn) btn.addEventListener('click',()=>{
+    Object.values(barCharts).forEach(c=>c.destroy());
+    barCharts={};
+    renderBarCharts();
+  });
+});
+// Also attach after DOM ready via direct binding
+setTimeout(()=>{
+  const btn=document.getElementById('btnBarUpdate');
+  if(btn) btn.addEventListener('click',()=>{
+    Object.values(barCharts).forEach(c=>c.destroy());
+    barCharts={};
+    renderBarCharts();
+  });
+},200);
+
+function getCatColor(cat){
+  const m={'alkali-metal':'rgba(255,107,53,0.85)','alkaline-earth-metal':'rgba(255,200,87,0.85)',
+  'lanthanoid':'rgba(168,197,218,0.85)','actinoid':'rgba(184,169,201,0.85)',
+  'transition-metal':'rgba(78,205,196,0.85)','post-transition-metal':'rgba(149,213,178,0.85)',
+  'metalloid':'rgba(116,179,206,0.85)','other-nonmetal':'rgba(244,162,97,0.85)',
+  'noble-gas':'rgba(199,125,255,0.85)','unknown':'rgba(108,117,125,0.85)'};
+  return m[cat]||'rgba(100,150,200,0.85)';
+}
+
+function renderBarCharts(){
+  const desde=parseInt(document.getElementById('barDesde').value)||1;
+  const hasta=parseInt(document.getElementById('barHasta').value)||18;
+  const sub=ELEMENTS_DATA.filter(e=>e.Z>=desde&&e.Z<=hasta);
+  const labels=sub.map(e=>e.sim);
+  const bgColors=sub.map(e=>getCatColor(e.cat));
+
+  const mkBar=(id,label,data,colors,extra={})=>{
+    if(barCharts[id]) barCharts[id].destroy();
+    const ctx=document.getElementById(id);
+    if(!ctx) return;
+    barCharts[id]=new Chart(ctx.getContext('2d'),{
+      type:'bar',
+      data:{labels,datasets:[{label,data,backgroundColor:colors,borderColor:colors.map(c=>c.replace('0.85','1')),borderWidth:1,borderRadius:4}]},
+      options:{...CHART_OPT,...extra,plugins:{...CHART_OPT.plugins,legend:{display:false}},scales:{...CHART_OPT.scales,x:{...CHART_OPT.scales.x,ticks:{...CHART_OPT.scales.x.ticks,maxRotation:60,minRotation:40}}}}
+    });
+  };
+
+  // 1. Masa atómica — each element a different color per category
+  mkBar('chartBarMasa','Masa atómica (u)',sub.map(e=>e.masa),bgColors);
+
+  // 2. Composición del núcleo — grouped: protones + neutrones
+  if(barCharts['chartBarNucleo']) barCharts['chartBarNucleo'].destroy();
+  const ctx2=document.getElementById('chartBarNucleo');
+  if(ctx2) barCharts['chartBarNucleo']=new Chart(ctx2.getContext('2d'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Protones',data:sub.map(e=>e.Z),backgroundColor:'rgba(255,107,53,0.85)',borderColor:'#ff6b35',borderWidth:1,borderRadius:4},
+      {label:'Neutrones',data:sub.map(e=>e.N),backgroundColor:'rgba(78,205,196,0.85)',borderColor:'#4ecdc4',borderWidth:1,borderRadius:4}
+    ]},
+    options:{...CHART_OPT,scales:{...CHART_OPT.scales,x:{...CHART_OPT.scales.x,ticks:{...CHART_OPT.scales.x.ticks,maxRotation:60,minRotation:40}}}}
+  });
+
+  // 3. Completo: 4 datasets
+  if(barCharts['chartBarCompleto']) barCharts['chartBarCompleto'].destroy();
+  const ctx3=document.getElementById('chartBarCompleto');
+  if(ctx3) barCharts['chartBarCompleto']=new Chart(ctx3.getContext('2d'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Protones (e+)',data:sub.map(e=>e.Z),backgroundColor:'rgba(255,107,53,0.8)',borderColor:'#ff6b35',borderWidth:1,borderRadius:3},
+      {label:'Electrones (e−)',data:sub.map(e=>e.Z),backgroundColor:'rgba(78,205,196,0.5)',borderColor:'#4ecdc4',borderWidth:1,borderRadius:3},
+      {label:'Neutrones (N)',data:sub.map(e=>e.N),backgroundColor:'rgba(168,197,218,0.7)',borderColor:'#a8c5da',borderWidth:1,borderRadius:3},
+      {label:'Nº Másico (A)',data:sub.map(e=>e.Z+e.N),backgroundColor:'rgba(255,200,87,0.35)',borderColor:'#ffc857',borderWidth:1,borderRadius:3},
+    ]},
+    options:{...CHART_OPT,scales:{...CHART_OPT.scales,x:{...CHART_OPT.scales.x,ticks:{...CHART_OPT.scales.x.ticks,maxRotation:60,minRotation:40}}}}
+  });
+
+  // 4. EN
+  mkBar('chartBarEN','Electronegatividad (Pauling)',sub.map(e=>e.en||0),bgColors);
+
+  // 5. Radio
+  mkBar('chartBarRadio','Radio atómico (pm)',sub.map(e=>e.radius||0),bgColors);
+
+  // 6. Ionización
+  mkBar('chartBarIoniz','E. Ionización (kJ/mol)',sub.map(e=>e.ioniz||0),bgColors);
+
+  // 7. Pie estado físico (all elements in range)
+  const solid=sub.filter(e=>e.state==='S').length;
+  const liquid=sub.filter(e=>e.state==='L').length;
+  const gas=sub.filter(e=>e.state==='G').length;
+  if(barCharts['chartPieState']) barCharts['chartPieState'].destroy();
+  const ctx7=document.getElementById('chartPieState');
+  if(ctx7) barCharts['chartPieState']=new Chart(ctx7.getContext('2d'),{
+    type:'doughnut',
+    data:{labels:['Sólido','Líquido','Gas'],datasets:[{data:[solid,liquid,gas],backgroundColor:['rgba(78,205,196,0.85)','rgba(255,107,53,0.85)','rgba(199,125,255,0.85)'],borderColor:['#4ecdc4','#ff6b35','#c77dff'],borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#c8e6f0aa',font:{family:'Share Tech Mono',size:11},padding:16}},tooltip:{backgroundColor:'#050a0f',borderColor:'#00d4ff44',borderWidth:1,titleColor:'#00d4ff',bodyColor:'#c8e6f0'}}}
+  });
+
+  // 8. Data table below
+  const tbody=document.getElementById('barTableBody');
+  tbody.innerHTML=sub.map(e=>`<tr>
+    <td class="val-col">${e.Z}</td>
+    <td style="font-family:'Orbitron',sans-serif;color:${CAT_COLORS[e.cat]||'#00d4ff'};font-weight:700;">${e.sim}</td>
+    <td>${e.nom}</td>
+    <td style="text-align:right;color:#ff6b35;">${e.Z}</td>
+    <td style="text-align:right;color:#4ecdc4;">${e.Z}</td>
+    <td style="text-align:right;color:#a8c5da;">${e.N}</td>
+    <td style="text-align:right;color:var(--glow);">${e.Z+e.N}</td>
+    <td style="text-align:right;">${e.masa}</td>
+    <td style="text-align:right;color:var(--glow2);">${e.en||'—'}</td>
+    <td style="text-align:right;">${e.radius||'—'}</td>
+    <td style="text-align:right;">${e.ioniz||'—'}</td>
+  </tr>`).join('');
+}
 </script>
 </body>
 </html>
